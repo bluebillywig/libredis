@@ -60,7 +60,10 @@ if test "$PHP_LIBREDIS" != "no"; then
 
   CFLAGS="-std=gnu99 $CFLAGS -pedantic -Wall -DNDEBUG"
 
-  PHP_ADD_LIBRARY(rt,, LIBREDIS_SHARED_LIBADD)
+  UNAME=`uname | grep Darwin`
+  if test "$UNAME" != "Darwin"; then
+    PHP_ADD_LIBRARY(rt,, LIBREDIS_SHARED_LIBADD)
+  fi
 
   PHP_NEW_EXTENSION(libredis, libredis.c batch.c connection.c ketama.c md5.c module.c parser.c buffer.c, $ext_shared)
 fi

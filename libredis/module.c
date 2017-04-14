@@ -15,17 +15,17 @@
 #include "reply.h"
 #include "batch.h"
 
-Module g_module;
+Module g_m_module;
 static THREADLOCAL char error[MAX_ERROR_SIZE];
 
 Module *Module_new()
 {
-	return &g_module;
+	return &g_m_module;
 }
 
 int Module_init(Module *module)
 {
-	assert(module == &g_module);//for now...
+	assert(module == &g_m_module);//for now...
 
 	DEBUG(("Module init\n"));
 	if(module->alloc_malloc == NULL) {
@@ -76,7 +76,7 @@ void Module_set_error(Module *module, char *format, ...)
 
 void Module_free(Module *module)
 {
-	assert(module == &g_module);//for now...
+	assert(module == &g_m_module);//for now...
 
 	DEBUG(("Module free\n"));
 	//release the freelists

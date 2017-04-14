@@ -21,8 +21,8 @@ struct _Module
     size_t allocated;
 };
 
-extern Module g_module;
-#define GET_MODULE() ((Module *)&g_module)
+extern Module g_m_module;
+#define GET_MODULE() ((Module *)&g_m_module)
 
 void Module_set_error(Module *module, char *format, ...);
 
